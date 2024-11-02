@@ -16,6 +16,7 @@ class _QrPageState extends State<QrPage> with WidgetsBindingObserver {
 
   void _handleBarcode(BarcodeCapture capture) {
     data = capture.barcodes[0].rawValue!;
+    setState(() {});
   }
 
   @override
