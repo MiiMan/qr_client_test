@@ -13,9 +13,22 @@ class QrPage extends StatefulWidget {
 class _QrPageState extends State<QrPage> with WidgetsBindingObserver {
 
   String data = 'initial data';
+  DateTime time = DateTime.now();
+  String d = '';
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    time = DateTime.now();
+  }
 
   void _handleBarcode(BarcodeCapture capture) {
     data = capture.barcodes[0].rawValue!;
+
+    d = '${DateTime.now().millisecondsSinceEpoch - time.millisecondsSinceEpoch}';
+    time = DateTime.now();
     setState(() {});
   }
 
@@ -35,6 +48,10 @@ class _QrPageState extends State<QrPage> with WidgetsBindingObserver {
                 ),
               ),
             ),
+
+            SizedBox(height: 100,),
+
+            Text('Сканирование: $d мс'),
 
             SizedBox(height: 100,),
 
